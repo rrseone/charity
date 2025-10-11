@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load option_tags %}
+{% block title %}Home | Charity{% endblock %}
+{% block content %}
+    {% include 'layouts/banner.html' %}
+    <!--? Services Area Start -->
+    <div class="service-area section-padding30">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle text-center mb-80">
+                        <span>{% theme_option 'services-title' 'What we are doing' '10' %}</span>
+                        <h2>{% theme_option 'services-subtitle' 'We Are In A Mission To Help The Helpless' '11' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for service in featured_services %}
+                	<div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="single-cat text-center mb-50 {% if forloop.counter == 2 %} active {% endif %} ">
+                        <div class="cat-icon">
+                            <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                        </div>
+                        <div class="cat-cap">
+                            <h5><a href="{{ service.get_absolute_url }}">{{ service.title }}</a>
+                            </h5>
+                            <p>{{ service.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Services Area End -->
+    <!--? About Law Start-->
+    <section class="about-low-area section-padding2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-10">
+                    <div class="about-caption mb-50">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle mb-35">
+                            <span>{% theme_option 'about-us-title' 'About our foundation' '20' %}</span>
+                            <h2>{% theme_option 'about-us-subtitle' 'We Are In A Mission To Help Helpless' '21' %}</h2>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,mod tempor incididunt ut labore et
+                            dolore magna aliqua. Utnixm, quis nostrud exercitation ullamc.</p>
+                        <p>Lorem ipvsum dolor sit amext, consectetur adipisicing elit, smod tempor incididunt ut labore
+                            et dolore.</p>
+                    </div>
+                    <a href="about.html" class="btn">About US</a>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <!-- about-img -->
+                    <div class="about-img ">
+                        <div class="about-font-img d-none d-lg-block">
+                            <img src="{% static 'img/gallery/about2.png' %}" alt="">
+                        </div>
+                        <div class="about-back-img ">
+                            <img src="{% static 'img/gallery/about1.png' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Law End-->
+    <!-- Our Cases Start -->
+    <div class="our-cases-area section-padding30">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle text-center mb-80">
+                        <span>{% theme_option 'campaigns-title' 'Our Cases you can see' '30' %}</span>
+                        <h2>{% theme_option 'campaigns-subtitle' 'Explore our latest causes that we works' '31' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for campaign in featured_campaigns %}
+                    {% include 'includes/campaigns/campaigns-list-item.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Our Cases End -->
+    <!-- Featured_job_start -->
+    <section class="featured-job-area section-padding30 section-bg2"
+             data-background="{% static 'img/gallery/section_bg03.png' %}">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-9 col-md-10 col-sm-12">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle text-center mb-80">
+                        <span>{% theme_option 'events-title' 'What we are boing' '40' %}</span>
+                        <h2>{% theme_option 'events-subtitle' 'We arrange many social events for charity donations' '41' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% for event in featured_events %}
+                    {% include 'includes/events/event-list-item.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Featured_job_end -->
+
+    {% include 'layouts/sections/members.html' %}
+
+    <!-- Want To work -->
+    <section class="wantToWork-area ">
+        <div class="container">
+            <div class="wants-wrapper w-padding2  section-bg"
+                 data-background="{% static 'img/gallery/section_bg01.png' %}">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-xl-5 col-lg-9 col-md-8">
+                        <div class="wantToWork-caption wantToWork-caption2">
+                            <h2>{% theme_option 'want-to-work-to-contact-title' 'Lets Change The World With Humanity' '30' %}</h2>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <a href="index.html#" class="btn white-btn f-right sm-left">{% theme_option 'want-to-work-to-contact-button' 'Become A Volunteer' '30' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Want To work End -->
+    <!--? Testimonial Start -->
+    <div class="testimonial-area testimonial-padding">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-8 col-lg-8 col-md-10">
+                    <div class="h1-testimonial-active dot-style">
+                        {% for staff in featured_staffs %}
+                        	<div class="single-testimonial text-center">
+                                <div class="testimonial-caption ">
+                                    <div class="testimonial-founder">
+                                        <div class="founder-img mb-40">
+                                            <img src="{{ staff.image.url }}" alt="{{ staff.full_name }}">
+                                            <span>{{ staff.full_name }}</span>
+                                            <p>{{ staff.role }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-top-cap">
+                                        <p>“{{ staff.bio }}”</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+    <!--? Blog Area Start -->
+    <section class="home-blog-area section-padding30">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-9 col-sm-10">
+                    <div class="section-tittle text-center mb-90">
+                        <span>{% theme_option 'blog-title' 'Our recent blog' '100' %}</span>
+                        <h2>{% theme_option 'blog-subtitle' 'Latest News from our recent blog' '101' %}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for post in featured_posts %}
+                	<div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="home-blog-single mb-30">
+                        <div class="blog-img-cap">
+                            <div class="blog-img">
+                                <img src="{{ post.image.thumbnail.url }}" alt="{{ post.title }}">
+                                <!-- Blog date -->
+                                <div class="blog-date text-center">
+                                    <span>24</span>
+                                    <p>Now</p>
+                                </div>
+                            </div>
+                            <div class="blog-cap">
+                                <p>{{ post.author.full_name }}</p>
+                                <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Blog Area End -->
+    <!--? Count Down Start -->
+    <div class="count-down-area pt-25 section-bg" data-background="{% static 'img/gallery/section_bg02.png' %}">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="count-down-wrapper">
+                        <div class="row justify-content-between">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter color-green">6,200</span>
+                                    <span class="plus">+</span>
+                                    <p class="color-green">Donation</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter color-green">80</span>
+                                    <span class="plus">+</span>
+                                    <p class="color-green">Fund Raised</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter color-green">256</span>
+                                    <span class="plus">+</span>
+                                    <p class="color-green">Donation</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <!-- Counter Up -->
+                                <div class="single-counter text-center">
+                                    <span class="counter color-green">256</span>
+                                    <span class="plus">+</span>
+                                    <p class="color-green">Donation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Count Down End -->
+{% endblock content %}

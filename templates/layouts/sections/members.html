@@ -1,0 +1,20 @@
+{% load option_tags %}
+
+<div class="team-area pt-160 pb-160">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
+                <!-- Section Tittle -->
+                <div class="section-tittle section-tittle2 text-center mb-70">
+                    <span>{% theme_option 'team-title' 'What we are doing' '50' %}</span>
+                    <h2>{% theme_option 'team-subtitle' 'Our Expert Volunteer Always ready' '51' %}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for member in featured_members %}
+                {% include 'includes/base/member-list-item.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

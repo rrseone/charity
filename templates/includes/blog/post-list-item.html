@@ -1,0 +1,21 @@
+<article class="blog_item">
+    <div class="blog_item_img">
+        <img class="card-img rounded-0" src="{{ item.image.url }}" alt="{{ item.title }}">
+        <a href="{{ item.get_absolute_url }}" class="blog_item_date">
+            <p>{{ item.published_date|date:"M" }}</p>
+            <h3>{{ item.published_date|date:"Y" }}</h3>
+        </a>
+    </div>
+    <div class="blog_details">
+        <a class="d-inline-block" href="{{ item.get_absolute_url }}">
+            <h2 class="blog-head" style="color: #2d2d2d;">{{ item.title }}</h2>
+        </a>
+        <p>{{ item.description }}</p>
+        <ul class="blog-info-link">
+            <li><a href="{{ item.category.get_absolute_url }}"><i class="fa fa-user"></i> {{ item.category.title }}</a>
+            </li>
+            <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-comments"></i> {{ item.comments_count }} Comments</a>
+            </li>
+        </ul>
+    </div>
+</article>

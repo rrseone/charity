@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'layouts/page-header.html' %}
+
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+                        {% for item in posts %}
+                        	<article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="{{ item.image.url }}" alt="{{ item.title }}">
+                                <a href="{{ item.get_absolute_url }}" class="blog_item_date">
+                                    <p>{{ item.published_date|date:"M" }}</p>
+                                    <h3>{{ item.published_date|date:"Y" }}</h3>
+                                </a>
+                            </div>
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="{{ item.get_absolute_url }}">
+                                    <h2 class="blog-head" style="color: #2d2d2d;">{{ item.title }}</h2>
+                                </a>
+                                <p>{{ item.description }}</p>
+                                <ul class="blog-info-link">
+                                    <li><a href="{{ item.get_absolute_url }}"><i class="fa fa-comments"></i> {{ item.comments_count }} Comments</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                        {% endfor %}
+                        {% include 'includes/pagination.html' %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    {% include 'layouts/sidebar.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

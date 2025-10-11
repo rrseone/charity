@@ -1,0 +1,17 @@
+<div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="single-team mb-30">
+        <div class="team-img">
+            <img src="{{ member.image.url }}" alt="{{ member.full_name }}">
+            <ul class="team-social">
+                {% for item in member.social_links %}
+                    <li title="{{ item.social.title }}"><a href="{{ item.link }}"><i
+                            class="{{ item.social.fontawesome_class }}"></i></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="team-caption">
+            <h3>{{ member.full_name }}</h3>
+            <p>{{ member.role }}</p>
+        </div>
+    </div>
+</div>

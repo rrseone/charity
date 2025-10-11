@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load editorjs %}
+{% block content %}
+    {% include 'layouts/page-header.html' %}
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="{{ post.image.url }}" alt="">
+                        </div>
+                        <div class="blog_details">
+                            {{ post.content | editorjs }}
+                        </div>
+                    </div>
+                    <div class="navigation-top">
+                        <div class="d-sm-flex justify-content-between text-center">
+                            <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and
+                                4 people like this</p>
+                            <div class="col-sm-4 text-center my-2 my-sm-0">
+                                <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+                            </div>
+                            <ul class="social-icons">
+                                <li><a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="blog_details.html#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="blog_details.html#"><i class="fab fa-dribbble"></i></a></li>
+                                <li><a href="blog_details.html#"><i class="fab fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="navigation-area">
+                            <div class="row">
+                                {% if post.previous_post %}
+                                    <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                        <div class="thumb">
+                                            <a href="{{ post.previous_post.get_absolute_url }}">
+                                                <img class="img-fluid" src="{{ post.previous_post.image.icon.url }}"
+                                                     alt="{{ post.previous_post.title }}">
+                                            </a>
+                                        </div>
+                                        <div class="arrow">
+                                            <a href="{{ post.previous_post.get_absolute_url }}">
+                                                <span class="lnr text-white ti-arrow-left"></span>
+                                            </a>
+                                        </div>
+                                        <div class="detials">
+                                            <p>Prev Post</p>
+                                            <a href="{{ post.previous_post.get_absolute_url }}">
+                                                <h4 style="color: #2d2d2d;">{{ post.previous_post.title }}</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if post.next_post %}
+                                    <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center"
+                                         style="margin-left: auto">
+                                        <div class="detials">
+                                            <p>Next Post</p>
+                                            <a href="{{ post.next_post.get_absolute_url }}">
+                                                <h4 style="color: #2d2d2d;">{{ post.next_post.title }}</h4>
+                                            </a>
+                                        </div>
+                                        <div class="arrow">
+                                            <a href="{{ post.next_post.get_absolute_url }}">
+                                                <span class="lnr text-white ti-arrow-right"></span>
+                                            </a>
+                                        </div>
+                                        <div class="thumb">
+                                            <a href="{{ post.next_post.get_absolute_url }}">
+                                                <img class="img-fluid" src="{{ post.next_post.image.icon.url }}"
+                                                     alt="{{ post.next_post.title }}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if post.author %}
+                        <div class="blog-author">
+                            <div class="media align-items-center">
+                                <img src="{{ post.author.image.profile.url }}" alt="{{ post.author.full_name }}">
+                                <div class="media-body">
+                                    <h4>{{ post.author.full_name }}</h4>
+                                    <p>{{ post.author.bio }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="comments-area">
+                        <h4>{{ post.comments_count }} Comments</h4>
+                        {% for comment in post.comments %}
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        {% if comment.author %}
+                                            <div class="thumb">
+                                                <img src="{{ comment.author.image.icon.url }}"
+                                                     alt="{{ comment.author.full_name }}">
+                                            </div>
+                                        {% endif %}
+                                        <div class="desc">
+                                            <p class="comment">{{ comment.text }}</p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>{{ comment.author.full_name }}</h5>
+                                                    <p class="date">{{ comment.get_date }}</p>
+                                                </div>
+                                                <div class="reply-btn">
+                                                    <a href="blog_details.html#"
+                                                       class="btn-reply text-uppercase">reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="comment-form">
+                        <h4>Leave a Reply</h4>
+                        <form class="form-contact comment_form" action="blog_details.html#" id="commentForm">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                 <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                                           placeholder="Write Comment"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="name" id="name" type="text"
+                                               placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" id="email" type="email"
+                                               placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="website" id="website" type="text"
+                                               placeholder="Website">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Post Comment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    {% include 'layouts/sidebar.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

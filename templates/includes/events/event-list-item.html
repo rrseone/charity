@@ -1,0 +1,18 @@
+<div class="col-lg-9 col-md-12">
+    <div class="single-job-items mb-30">
+        <div class="job-items">
+            <div class="company-img">
+                <a href="{{ event.get_absolute_url }}"><img src="{{ event.image.thumbnail.url }}" alt=""></a>
+            </div>
+            <div class="job-tittle">
+                <a href="{{ event.get_absolute_url }}"><h4>{{ event.title }}</h4></a>
+                <ul>
+                    <li><i class="far fa-clock"></i>{{ event.event_start_time|time:'h:iA' }}
+                        - {{ event.event_end_time|time:'h:iA' }}</li>
+                    <li><i class="fas fa-sort-amount-down"></i>{{ event.event_date|date:'d.m.Y' }}</li>
+                    <li><i class="fas fa-map-marker-alt"></i>{{ event.city }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

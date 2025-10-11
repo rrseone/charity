@@ -1,0 +1,26 @@
+<div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="single-cases mb-40">
+        <div class="cases-img">
+            <img src="{{ campaign.image.thumbnail.url }}" alt="{{ campaign.title }}">
+        </div>
+        <div class="cases-caption">
+            <h3><a href="{{ campaign.get_absolute_url }}">{{ campaign.title }}</a></h3>
+            <!-- Progress Bar -->
+            <div class="single-skill mb-15">
+                <div class="bar-progress">
+                    <div id="bar{{ forloop.counter }}" class="barfiller">
+                        <div class="tipWrap">
+                            <span class="tip"></span>
+                        </div>
+                        <span class="fill" data-percentage="{{ campaign.get_raised_percentage }}"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- / progress -->
+            <div class="prices d-flex justify-content-between">
+                <p>Raised:<span> ${{ campaign.raised }}</span></p>
+                <p>Goal:<span> ${{ campaign.goal }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>

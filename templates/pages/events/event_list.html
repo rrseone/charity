@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% include 'layouts/page-header.html' %}
+
+    <section class="featured-job-area section-padding30 section-bg2" data-background="{% static 'img/gallery/section_bg03.png' %}">
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for event in events %}
+                    {% include 'includes/events/event-list-item.html' %}
+                {% endfor %}
+            </div>
+            <div>
+                {% include 'includes/pagination.html' %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}
