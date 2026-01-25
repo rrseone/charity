@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from stdimage import StdImageField
 
-from apps.base.models import Role
-from apps.base.utils import UploadToPathAndRename
+from apps.charity.models import Role
+from apps.charity.utils import UploadToPathAndRename
 
 
 class UserManager(BaseUserManager):

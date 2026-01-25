@@ -2,8 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django_editorjs_fields import EditorJsJSONField
 
-from apps.base.models import BaseModel
-from apps.base.utils import UploadToPathAndRename
+from apps.charity.models import BaseModel
+from apps.charity.utils import UploadToPathAndRename
 
 
 class Service(BaseModel):

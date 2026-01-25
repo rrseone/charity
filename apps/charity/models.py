@@ -1,8 +1,8 @@
 from django.db import models
 from django_countries.fields import CountryField
 
-from apps.base.middlewares import get_current_user
-from apps.base.utils import UploadToPathAndRename, SPONSOR_LEVEL_CHOICES
+from apps.charity.middlewares import get_current_user
+from apps.charity.utils import UploadToPathAndRename, SPONSOR_LEVEL_CHOICES
 
 from django.conf import settings
 
@@ -112,7 +112,7 @@ class Sponsor(BaseModel):
         return self.name
 
 
-class Option(BaseModel):
+class OptionText(BaseModel):
     key = models.SlugField(max_length=255, unique=True)
     value = models.CharField(max_length=255, null=True)
     priority = models.SmallIntegerField(default=0)
@@ -121,7 +121,23 @@ class Option(BaseModel):
         return self.key
 
     class Meta:
-        ordering = ['priority']
+        ordering = ['priority', 'key']
+
+
+class OptionFile(BaseModel):
+    key = models.SlugField(max_length=255, unique=True)
+    caption = models.CharField(max_length=255, blank=True, null=True)
+    file = models.FileField(
+        upload_to=UploadToPathAndRename('files'),
+        blank=True, null=True
+    )
+    priority = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.key
+
+    class Meta:
+        ordering = ['priority', 'key']
 
 
 

@@ -22,4 +22,4 @@ class ContactCreateView(CreateView):
 
 
 def contact_success_view(request):
-    return render(request, 'pages/contacts/contact_success.html') # templates/core/contact_success.html
+    return render(request, 'pages/contacts/contact_success.html') # templates/charity/contact_success.html

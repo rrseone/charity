@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.base.models import BaseModel
+from apps.charity.models import BaseModel
 
 class Subject(BaseModel):
     title = models.CharField(max_length=100)

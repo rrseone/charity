@@ -4,8 +4,8 @@ from django.utils import timezone
 from django_editorjs_fields import EditorJsJSONField
 from stdimage import StdImageField
 
-from apps.base.models import BaseModel, City
-from apps.base.utils import UploadToPathAndRename
+from apps.charity.models import BaseModel, City
+from apps.charity.utils import UploadToPathAndRename
 
 
 class Event(BaseModel):

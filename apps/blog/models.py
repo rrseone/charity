@@ -7,8 +7,8 @@ from django_editorjs_fields import EditorJsJSONField
 from stdimage import StdImageField
 from taggit.managers import TaggableManager
 
-from apps.base.models import BaseModel
-from apps.base.utils import UploadToPathAndRename
+from apps.charity.models import BaseModel
+from apps.charity.utils import UploadToPathAndRename
 from apps.blog.utils import POST_STATUS_CHOICES
 
 User = get_user_model()

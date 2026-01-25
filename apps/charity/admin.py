@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.base.models import Role, Member, Social, Sponsor, Option, City, SocialLink
+from apps.charity.models import Role, Member, Social, Sponsor, City, SocialLink, OptionFile, OptionText
 
 
 class SocialLinkTabularInline(admin.TabularInline):
@@ -31,8 +31,8 @@ class MemberAdmin(admin.ModelAdmin):
 class SponsorAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(Option)
-class OptionAdmin(admin.ModelAdmin):
+@admin.register(OptionText)
+class OptionTextAdmin(admin.ModelAdmin):
     list_display = ('key', 'value', 'priority')
     list_editable = ('priority', 'value')
 
@@ -40,4 +40,21 @@ class OptionAdmin(admin.ModelAdmin):
     readonly_fields = ('key',)
 
     def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+@admin.register(OptionFile)
+class OptionFileAdmin(admin.ModelAdmin):
+    list_display = ('key', 'caption', 'file', 'priority')
+    list_editable = ('priority', 'caption', 'file')
+
+    fields = ('key', 'caption', 'file', 'priority')
+    readonly_fields = ('key',)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
         return False

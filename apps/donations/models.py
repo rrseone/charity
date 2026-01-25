@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.base.models import BaseModel
+from apps.charity.models import BaseModel
 from apps.campaigns.models import Campaign
 
 

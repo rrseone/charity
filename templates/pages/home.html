@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load option_tags %}
 {% block title %}Home | Charity{% endblock %}
 {% block content %}
     {% include 'layouts/banner.html' %}
@@ -11,8 +10,8 @@
                 <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
                     <!-- Section Tittle -->
                     <div class="section-tittle text-center mb-80">
-                        <span>{% theme_option 'services-title' 'What we are doing' '10' %}</span>
-                        <h2>{% theme_option 'services-subtitle' 'We Are In A Mission To Help The Helpless' '11' %}</h2>
+                        <span>{{ services_title }}</span>
+                        <h2>{{ services_subtitle }}</h2>
                     </div>
                 </div>
             </div>
@@ -43,13 +42,10 @@
                     <div class="about-caption mb-50">
                         <!-- Section Tittle -->
                         <div class="section-tittle mb-35">
-                            <span>{% theme_option 'about-us-title' 'About our foundation' '20' %}</span>
-                            <h2>{% theme_option 'about-us-subtitle' 'We Are In A Mission To Help Helpless' '21' %}</h2>
+                            <span>{{ about_title }}</span>
+                            <h2>{{ about_subtitle }}</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,mod tempor incididunt ut labore et
-                            dolore magna aliqua. Utnixm, quis nostrud exercitation ullamc.</p>
-                        <p>Lorem ipvsum dolor sit amext, consectetur adipisicing elit, smod tempor incididunt ut labore
-                            et dolore.</p>
+                        <p>{{ about_description }}</p>
                     </div>
                     <a href="about.html" class="btn">About US</a>
                 </div>
@@ -75,8 +71,8 @@
                 <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
                     <!-- Section Tittle -->
                     <div class="section-tittle text-center mb-80">
-                        <span>{% theme_option 'campaigns-title' 'Our Cases you can see' '30' %}</span>
-                        <h2>{% theme_option 'campaigns-subtitle' 'Explore our latest causes that we works' '31' %}</h2>
+                        <span>{{ campaigns_title }}</span>
+                        <h2>{{ campaigns_subtitle }}</h2>
                     </div>
                 </div>
             </div>
@@ -96,8 +92,8 @@
                 <div class="col-xl-7 col-lg-9 col-md-10 col-sm-12">
                     <!-- Section Tittle -->
                     <div class="section-tittle text-center mb-80">
-                        <span>{% theme_option 'events-title' 'What we are boing' '40' %}</span>
-                        <h2>{% theme_option 'events-subtitle' 'We arrange many social events for charity donations' '41' %}</h2>
+                        <span>{{ event_title }}</span>
+                        <h2>{{ event_subtitle }}</h2>
                     </div>
                 </div>
             </div>
@@ -120,11 +116,11 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-xl-5 col-lg-9 col-md-8">
                         <div class="wantToWork-caption wantToWork-caption2">
-                            <h2>{% theme_option 'want-to-work-to-contact-title' 'Lets Change The World With Humanity' '30' %}</h2>
+                            <h2>{{ become_volunteer_title }}</h2>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4">
-                        <a href="index.html#" class="btn white-btn f-right sm-left">{% theme_option 'want-to-work-to-contact-button' 'Become A Volunteer' '30' %}</a>
+                        <a href="{{ become_volunteer_link }}" class="btn white-btn f-right sm-left">{{ become_volunteer_btn }}</a>
                     </div>
                 </div>
             </div>
@@ -142,7 +138,9 @@
                                 <div class="testimonial-caption ">
                                     <div class="testimonial-founder">
                                         <div class="founder-img mb-40">
-                                            <img src="{{ staff.image.url }}" alt="{{ staff.full_name }}">
+                                            {% if staff.image %}
+                                            	<img src="{{ staff.image.url }}" alt="{{ staff.full_name }}">
+                                            {% endif %}
                                             <span>{{ staff.full_name }}</span>
                                             <p>{{ staff.role }}</p>
                                         </div>
@@ -166,8 +164,8 @@
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-6 col-md-9 col-sm-10">
                     <div class="section-tittle text-center mb-90">
-                        <span>{% theme_option 'blog-title' 'Our recent blog' '100' %}</span>
-                        <h2>{% theme_option 'blog-subtitle' 'Latest News from our recent blog' '101' %}</h2>
+                        <span>{{ blog_title }}</span>
+                        <h2>{{ blog_subtitle }}</h2>
                     </div>
                 </div>
             </div>

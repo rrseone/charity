@@ -1582,7 +1582,7 @@ S2.define('select2/selection/base',[
 
 S2.define('select2/selection/single',[
   'jquery',
-  './base',
+  './charity',
   '../utils',
   '../keys'
 ], function ($, BaseSelection, Utils, KEYS) {
@@ -1690,7 +1690,7 @@ S2.define('select2/selection/single',[
 
 S2.define('select2/selection/multiple',[
   'jquery',
-  './base',
+  './charity',
   '../utils'
 ], function ($, BaseSelection, Utils) {
   function MultipleSelection ($element, options) {
@@ -3185,7 +3185,7 @@ S2.define('select2/data/base',[
 });
 
 S2.define('select2/data/select',[
-  './base',
+  './charity',
   '../utils',
   'jquery'
 ], function (BaseAdapter, Utils, $) {
@@ -6734,7 +6734,7 @@ S2.define('select2/selection/stopPropagation',[
         // by 40 to try and get a more usable deltaFactor.
         // Side note, this actually impacts the reported scroll distance
         // in older browsers and can cause scrolling to be slower than native.
-        // Turn this off by setting $.event.special.mousewheel.settings.adjustOldDeltas to false.
+        // Turn this off by setting $.event.special.mousewheel.charity.adjustOldDeltas to false.
         return special.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;
     }
 
@@ -6744,7 +6744,7 @@ S2.define('jquery.select2',[
   'jquery',
   'jquery-mousewheel',
 
-  './select2/core',
+  './select2/charity',
   './select2/defaults',
   './select2/utils'
 ], function ($, _, Select2, Defaults, Utils) {

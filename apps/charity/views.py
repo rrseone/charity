@@ -1,11 +1,10 @@
 from django.utils import timezone
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView
 
-from apps.base.models import Member
+from apps.charity.models import Member
 from apps.campaigns.models import Campaign
 from apps.events.models import Event
 from apps.blog.models import Post
-from apps.pages.models import Page
 
 from django.contrib.auth import get_user_model
 
@@ -33,18 +32,14 @@ class AboutPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # from apps.core.models import TeamMember
         # context['team_members'] = TeamMember.objects.all()
         return context
 
-class DetailPageView(DetailView):
+class DetailPageView(TemplateView):
     template_name = "pages/page.html"
-    model = Page
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # You can add extra context here if needed
+        # context['name'] = "Title"
         return context
 

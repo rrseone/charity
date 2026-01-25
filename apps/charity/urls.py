@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import AboutPageView, DetailPageView, HomePageView
+
+from apps.charity.views import HomePageView, AboutPageView, DetailPageView
 
 app_name = 'pages'
 
