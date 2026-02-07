@@ -24,51 +24,30 @@
                 <div class="col-xl-6 col-lg-7 col-md-10 col-sm-10">
                     <!-- Section Tittle -->
                     <div class="section-tittle text-center mb-80">
-                        <span>What we are doing</span>
-                        <h2>We Are In A Mission To Help The Helpless</h2>
+                        <span>{{ about_title }}</span>
+                        <h2>{{ about_subtitle }}</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat text-center mb-50">
-                        <div class="cat-icon">
-                            <span class="flaticon-null-1"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="https://preview.colorlib.com/theme/charityworks/services.html">Clean Water</a>
-                            </h5>
-                            <p>The sea freight service has grown conside rably in recent years. We spend timetting to
-                                know your processes to.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat active text-center mb-50">
-                        <div class="cat-icon">
-                            <span class="flaticon-think"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="https://preview.colorlib.com/theme/charityworks/services.html">Clean Water</a>
-                            </h5>
-                            <p>The sea freight service has grown conside rably in recent years. We spend timetting to
-                                know your processes to.</p>
+                {% for item in feature_services %}
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-cat text-center mb-50">
+                            <div class="cat-icon">
+                                {% if item.icon %}
+                                    <img src="{{ item.icon.url }}" alt="{{ item.title }}">
+                                {% else %}
+                                    <img src="{% static 'images/icons/applications.png' %}" alt="Applications">
+                                {% endif %}
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                                </h5>
+                                <p>{{ item.description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat text-center mb-50">
-                        <div class="cat-icon">
-                            <span class="flaticon-gear"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="https://preview.colorlib.com/theme/charityworks/services.html">Clean Water</a>
-                            </h5>
-                            <p>The sea freight service has grown conside rably in recent years. We spend timetting to
-                                know your processes to.</p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -81,24 +60,21 @@
                     <div class="about-caption mb-50">
                         <!-- Section Tittle -->
                         <div class="section-tittle mb-35">
-                            <span>About our foundetion</span>
-                            <h2>We Are In A Mission To Help Helpless</h2>
+                            <span>{{ about_title_2 }}</span>
+                            <h2>{{ about_subtitle }}</h2>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,mod tempor incididunt ut labore et
-                            dolore magna aliqua. Utnixm, quis nostrud exercitation ullamc.</p>
-                        <p>Lorem ipvsum dolor sit amext, consectetur adipisicing elit, smod tempor incididunt ut labore
-                            et dolore.</p>
+                        <p>{{ about_description|safe }}</p>
                     </div>
-                    <a href="about.html" class="btn">About US</a>
+                    <a href="{{ contacts_btn_link }}" class="btn">{{ contacts_btn_text }}</a>
                 </div>
                 <div class="col-lg-6 col-md-12">
                     <!-- about-img -->
                     <div class="about-img ">
                         <div class="about-font-img d-none d-lg-block">
-                            <img src="assets/img/gallery/about2.png" alt="">
+                            <img src="{{ about_us_2_url }}" alt="{{ about_us_2_caption }}">
                         </div>
                         <div class="about-back-img ">
-                            <img src="assets/img/gallery/about1.png" alt="">
+                            <img src="{{ about_us_1_url }}" alt="{{ about_us_1_caption }}">
                         </div>
                     </div>
                 </div>
@@ -109,15 +85,17 @@
     <!-- Want To work -->
     <section class="wantToWork-area ">
         <div class="container">
-            <div class="wants-wrapper w-padding2  section-bg" data-background="assets/img/gallery/section_bg01.png">
+            <div class="wants-wrapper w-padding2  section-bg"
+                 data-background="{{ section_bg_one_url }}">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-xl-5 col-lg-9 col-md-8">
                         <div class="wantToWork-caption wantToWork-caption2">
-                            <h2>Lets Chenge The World With Humanity</h2>
+                            <h2>{{ become_volunteer_title }}</h2>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4">
-                        <a href="about.html#" class="btn white-btn f-right sm-left">Become A Volunteer</a>
+                        <a href="{{ become_volunteer_link }}"
+                           class="btn white-btn f-right sm-left">{{ become_volunteer_btn }}</a>
                     </div>
                 </div>
             </div>
@@ -131,60 +109,27 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-xl-8 col-lg-8 col-md-10">
                     <div class="h1-testimonial-active dot-style">
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <div class="testimonial-caption ">
-                                <!-- founder -->
-                                <div class="testimonial-founder">
-                                    <div class="founder-img mb-40">
-                                        <img src="assets/img/gallery/testimonial.png" alt="">
-                                        <span>Margaret Lawson</span>
-                                        <p>Creative Director</p>
+                        {% for item in testimonials %}
+                            <div class="single-testimonial text-center">
+                                <div class="testimonial-caption ">
+                                    <!-- founder -->
+                                    <div class="testimonial-founder">
+                                        <div class="founder-img mb-40">
+                                            {% if item.avatar %}
+                                                <img src="{{ item.avatar.url }}" alt="{{ item.name }}">
+                                            {% else %}
+                                                <img src="{% static 'images/icons/person.png' %}" alt="Avatar">
+                                            {% endif %}
+                                            <span>{{ item.name }}</span>
+                                            <p>{{ item.role.title }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-top-cap">
+                                        <p>“{{ item.feedback }}”</p>
                                     </div>
                                 </div>
-                                <div class="testimonial-top-cap">
-                                    <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                        responsibility! So start caring for your body and it will care for you. Eat
-                                        clean it will care for you and workout hard.”</p>
-                                </div>
                             </div>
-                        </div>
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <div class="testimonial-caption ">
-                                <!-- founder -->
-                                <div class="testimonial-founder">
-                                    <div class="founder-img mb-40">
-                                        <img src="assets/img/gallery/testimonial.png" alt="">
-                                        <span>Margaret Lawson</span>
-                                        <p>Creative Director</p>
-                                    </div>
-                                </div>
-                                <div class="testimonial-top-cap">
-                                    <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                        responsibility! So start caring for your body and it will care for you. Eat
-                                        clean it will care for you and workout hard.”</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Testimonial -->
-                        <div class="single-testimonial text-center">
-                            <div class="testimonial-caption ">
-                                <!-- founder -->
-                                <div class="testimonial-founder">
-                                    <div class="founder-img mb-40">
-                                        <img src="assets/img/gallery/testimonial.png" alt="">
-                                        <span>Margaret Lawson</span>
-                                        <p>Creative Director</p>
-                                    </div>
-                                </div>
-                                <div class="testimonial-top-cap">
-                                    <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                        responsibility! So start caring for your body and it will care for you. Eat
-                                        clean it will care for you and workout hard.”</p>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -193,7 +138,7 @@
     <!-- Testimonial End -->
 
     <!--? Count Down Start -->
-    <div class="count-down-area pt-25 section-bg" data-background="assets/img/gallery/section_bg02.png">
+    <div class="count-down-area pt-25 section-bg" data-background="images/aboutus/section_bg02.png">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 col-md-12">

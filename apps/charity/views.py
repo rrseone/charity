@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django.views.generic import TemplateView
 
-from apps.charity.models import Member
+from apps.charity.models import Member, Testimonial, HomeSlider
 from apps.campaigns.models import Campaign
 from apps.events.models import Event
 from apps.blog.models import Post
@@ -18,6 +18,7 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['home_slides'] = HomeSlider.objects.active().order_by('priority', '-created_at')
         context['featured_services'] = Service.objects.active().order_by('-is_featured', '-created_at')[:3]
         context['featured_campaigns'] = Campaign.objects.active().filter(end_date__lt=timezone.now()).order_by('-start_date')[:3]
         context['featured_events'] = Event.objects.filter().order_by('event_date', '-event_start_time')[:3]
@@ -32,7 +33,8 @@ class AboutPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['team_members'] = TeamMember.objects.all()
+        context['feature_services'] = Service.objects.active().order_by('-is_featured', '-priority')[:3]
+        context['testimonials'] = Testimonial.objects.active()
         return context
 
 class DetailPageView(TemplateView):

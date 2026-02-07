@@ -10,9 +10,10 @@ class Service(BaseModel):
     is_featured = models.BooleanField(default=False)
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
-    image = models.ImageField(upload_to=UploadToPathAndRename('images'), blank=True, null=True)
+    icon = models.ImageField(upload_to=UploadToPathAndRename('icons'), blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     content = EditorJsJSONField(blank=True, null=True)
+    priority = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.title

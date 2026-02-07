@@ -58,6 +58,57 @@ class BaseModel(models.Model):
         super().save(*args, **kwargs)
         return
 
+
+class OptionText(BaseModel):
+    key = models.SlugField(max_length=255, unique=True)
+    value = models.CharField(max_length=255, null=True)
+    priority = models.SmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.key
+
+    class Meta:
+        verbose_name = "Option"
+        verbose_name_plural = "Options"
+        ordering = ['priority', 'key']
+
+
+class OptionFile(BaseModel):
+    key = models.SlugField(max_length=255, unique=True)
+    caption = models.CharField(max_length=255, blank=True, null=True)
+    file = models.FileField(
+        upload_to=UploadToPathAndRename('files'),
+        blank=True, null=True
+    )
+    priority = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.key
+
+    class Meta:
+        verbose_name = "File"
+        verbose_name_plural = "Files"
+        ordering = ['priority', 'key']
+
+
+class HomeSlider(BaseModel):
+    title = models.CharField(max_length=255, null=True)
+    description = models.TextField(blank=True, null=True)
+    action_btn_text = models.CharField(max_length=255, blank=True, null=True)
+    action_btn_link = models.URLField(max_length=255, blank=True, null=True)
+    email_btn_text = models.CharField(max_length=255, blank=True, null=True)
+    email_btn_link = models.CharField(max_length=255, blank=True, null=True)
+    priority = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['priority']
+        verbose_name = "Slider"
+        verbose_name_plural = "Sliders"
+
+
 class City(BaseModel):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
@@ -66,10 +117,13 @@ class City(BaseModel):
     def __str__(self):
         return f'{self.name}, {self.country.name}'
 
+
 class Role(BaseModel):
     title = models.CharField(max_length=255)
+
     def __str__(self):
         return self.title
+
 
 class Member(BaseModel):
     is_featured = models.BooleanField(default=False)
@@ -84,6 +138,7 @@ class Member(BaseModel):
 
     def __str__(self):
         return self.full_name
+
 
 class Social(BaseModel):
     title = models.CharField(max_length=255)
@@ -101,6 +156,19 @@ class SocialLink(BaseModel):
     def __str__(self):
         return f'{self.member.full_name}, {self.social.title}, {self.link}'
 
+class SiteSocialLink(BaseModel):
+    social = models.ForeignKey(Social, on_delete=models.CASCADE)
+    link = models.URLField(max_length=255)
+    priority = models.PositiveSmallIntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.social.title}, {self.link}'
+
+    class Meta:
+        ordering = ['priority']
+        verbose_name = "Social Link"
+        verbose_name_plural = "Social Links"
+
 
 class Sponsor(BaseModel):
     name = models.CharField(max_length=255)
@@ -112,33 +180,12 @@ class Sponsor(BaseModel):
         return self.name
 
 
-class OptionText(BaseModel):
-    key = models.SlugField(max_length=255, unique=True)
-    value = models.CharField(max_length=255, null=True)
-    priority = models.SmallIntegerField(default=0)
-
-    def __str__(self):
-        return self.key
-
-    class Meta:
-        ordering = ['priority', 'key']
-
-
-class OptionFile(BaseModel):
-    key = models.SlugField(max_length=255, unique=True)
-    caption = models.CharField(max_length=255, blank=True, null=True)
-    file = models.FileField(
-        upload_to=UploadToPathAndRename('files'),
-        blank=True, null=True
-    )
+class Testimonial(BaseModel):
+    name = models.CharField(max_length=255)
+    role = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True)
+    feedback = models.TextField(blank=True, null=True)
+    avatar = models.ImageField(upload_to=UploadToPathAndRename('avatars'), null=True, blank=True)
     priority = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
-        return self.key
-
-    class Meta:
-        ordering = ['priority', 'key']
-
-
-
-
+        return self.name

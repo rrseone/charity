@@ -5,7 +5,7 @@
             <!-- Logo -->
             <div class="col-xl-2 col-lg-2">
                 <div class="logo">
-                    <a href="{% url 'pages:home-detail' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                    <a href="{% url 'pages:home' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
                 </div>
             </div>
             <div class="col-xl-10 col-lg-10">
@@ -14,8 +14,8 @@
                     <div class="main-menu d-none d-lg-block">
                         <nav>
                             <ul id="navigation">
-                                <li><a href="{% url 'pages:home-detail' %}">Home</a></li>
-                                <li><a href="{% url 'pages:about_us-detail' %}">About</a></li>
+                                <li><a href="{% url 'pages:home' %}">Home</a></li>
+                                <li><a href="{% url 'pages:about_us' %}">About</a></li>
                                 <li><a href="{% url 'campaigns:campaign_list' %}">latest causes</a></li>
                                 <li><a href="{% url 'events:event_list' %}">social events </a></li>
                                 <li><a href="{% url 'blog:post_list' %}">Blog</a></li>

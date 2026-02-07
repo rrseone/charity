@@ -1,12 +1,21 @@
 from django.contrib import admin
 
-from apps.charity.models import Role, Member, Social, Sponsor, City, SocialLink, OptionFile, OptionText
+from apps.charity.models import Role, Member, Social, Sponsor, City, SocialLink, OptionFile, OptionText, Testimonial, \
+    HomeSlider, SiteSocialLink
 
 
 class SocialLinkTabularInline(admin.TabularInline):
     model = SocialLink
     extra = 0
     fields = ('is_active', 'social', 'link')
+
+@admin.register(SiteSocialLink)
+class SiteSocialLinkAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(HomeSlider)
+class HomeSliderAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
@@ -29,6 +38,10 @@ class MemberAdmin(admin.ModelAdmin):
 
 @admin.register(Sponsor)
 class SponsorAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Testimonial)
+class TestimonialAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(OptionText)

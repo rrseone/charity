@@ -4,31 +4,26 @@
             <div class="row d-flex justify-content-between align-items-center">
                 <div class="header-info-left d-flex">
                     <ul>
-                        <li>Phone: +99 (0) 101 0000 888</li>
-                        <li>Email: <a href="https://preview.colorlib.com/cdn-cgi/l/email-protection"
-                                      class="__cf_email__"
-                                      data-cfemail="84eaebf6e1f4e8fdc4fdebf1f6e0ebe9e5edeaaae7ebe9">[email&#160;protected]</a>
-                        </li>
+                        <li>Phone: <a class="text-dark" href="tel:{{ contacts_phone }}">{{ contacts_phone }}</a></li>
+                        <li>Email: <a class="text-dark" href="mailto:{{ contacts_email }}">{{ contacts_email }}</a></li>
                     </ul>
                     <div class="header-social">
                         <ul>
-                            <li><a href="index.html#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li><a href="index.html#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="index.html#"><i class="fab fa-google-plus-g"></i></a></li>
+                            {% for item in socials %}
+                            	<li><a href="{{ item.link }}"><i class="{{ item.social.fontawesome_class }}" title="{{ item.social.title }}"></i></a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
                 <div class="header-info-right d-flex align-items-center">
                     <div class="select-this">
-                        <form action="index.html#">
+                        <form>
                             <div class="select-itms">
-                                <select name="select" id="select1">
-                                    <option value="">English</option>
-                                    <option value="">Bangla</option>
-                                    <option value="">Arabic</option>
-                                    <option value="">Hindi</option>
+                                <select name="select" id="select1" disabled>
+                                    <option selected value="eng">English</option>
+                                    <option value="bn">Bengali</option>
+                                    <option value="ar">Arabic</option>
+                                    <option value="hn">Hindi</option>
                                 </select>
                             </div>
                         </form>
